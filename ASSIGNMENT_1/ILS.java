@@ -31,4 +31,14 @@ public class ILS
     }
 
     
+
+    //fine
+    private int totalDistance(int[] curr){
+        int total=0;
+        for(int i=0; i<4;i++){
+            total+=distanceCost[curr[i]][curr[i+1]];
+        }
+        total+=distanceCost[curr[4]][curr[0]];
+        return total;
+    }
 }
