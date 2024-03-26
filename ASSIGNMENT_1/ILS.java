@@ -30,7 +30,44 @@ public class ILS
         return randomArray;
     }
 
-    
+    //fine (I hope)
+    private int[] hillClimbAlgo(int[] randomArray)
+    {
+        int[] oldSolution=new int[5];
+        oldSolution=randomArray.clone();
+        int initialDistance=totalDistance(oldSolution);
+
+        int[] newSolution=new int[5];
+        newSolution=randomArray.clone();
+        boolean optimum=false;
+
+        while(!optimum)
+        {
+            optimum=true;
+            for(int i=0; i<4; i++)
+            {
+                for(int k=i+1; k<5; i++)
+                {
+                    //swapping
+                    int temp=newSolution[i];
+                    newSolution[i]=newSolution[k];
+                    newSolution[k]=temp;
+                    
+                    //get total distance
+                    int newDistance=totalDistance(newSolution);
+        
+                    //get comparision
+                    if (newDistance<initialDistance)
+                    {
+                        optimum=true;
+                        oldSolution=newSolution;
+                        initialDistance=newDistance;
+                    }
+                }    
+            }
+        }
+        return oldSolution;
+    }
 
     //fine
     private int totalDistance(int[] curr){
