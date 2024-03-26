@@ -10,7 +10,8 @@ public class ILS
     }
 
     //fine
-    private int[] initialSolution()
+    @SuppressWarnings("unused")
+    public int[] initialSolution()
     {
         //create an populate arr
         int[] randomArray= new int[5];
@@ -21,7 +22,7 @@ public class ILS
         //randomise arr
         Random r=new Random();
         
-        for (int i=5; i>0; i--){
+        for (int i=4; i>0; i--){
             int j=r.nextInt(+1);
             int tmp=randomArray[i];
             randomArray[i]=randomArray[j];
@@ -31,7 +32,8 @@ public class ILS
     }
 
     //fine (I hope)
-    private int[] hillClimbAlgo(int[] randomArray)
+    @SuppressWarnings("unused")
+    public int[] hillClimbAlgo(int[] randomArray)
     {
         int[] oldSolution=new int[5];
         oldSolution=randomArray.clone();
@@ -46,7 +48,7 @@ public class ILS
             optimum=true;
             for(int i=0; i<4; i++)
             {
-                for(int k=i+1; k<5; i++)
+                for(int k=i+1; k<5; k++)
                 {
                     //swapping
                     int temp=newSolution[i];
@@ -59,7 +61,7 @@ public class ILS
                     //get comparision
                     if (newDistance<initialDistance)
                     {
-                        optimum=true;
+                        optimum=false;
                         oldSolution=newSolution;
                         initialDistance=newDistance;
                     }
