@@ -14,11 +14,13 @@ public class Main {
         int[] initialSolution=algo.initialSolution();
 
         System.out.println("The Initial Solution: ");
-        System.out.println("[");
+        System.out.print("[");
         for(int i=0; i<initialSolution.length-1; i++)
         {
-            System.out.println(initialSolution[i]+ " ");
+            System.out.print(initialSolution[i]+ " ");
         }
         System.out.println(initialSolution[4]+"]");
+
+        int [] finalSolution= algo.hillClimbAlgo(initialSolution);
     }
 }
