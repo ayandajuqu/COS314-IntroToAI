@@ -5,6 +5,11 @@ import java.util.Random;
 public class SA {
     int[][] disntanceCost;
 
+    public SA(int[][] disntanceCost)
+    {
+        this.disntanceCost=disntanceCost;
+    }
+    
     //A method to generate an initial solution.
     public int[] initialSolution()
     {
