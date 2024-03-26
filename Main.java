@@ -21,6 +21,6 @@ public class Main {
         }
         System.out.println(initialSolution[4]+"]");
 
-        int [] finalSolution= algo.hillClimbAlgo(initialSolution);
+        algo.hillClimbAlgo(initialSolution);
     }
 }
