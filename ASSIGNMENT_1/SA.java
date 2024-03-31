@@ -1,5 +1,6 @@
 package ASSIGNMENT_1;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class SA {
@@ -71,13 +72,24 @@ public class SA {
             //find neigbours
             int[] newSolution=findNeighbours(currentSolution);
             int newCost= cost(newSolution);
+            //testing
+             System.out.println("\nTemperature: " + temperature);
+            System.out.println("New solution: " + Arrays.toString(newSolution));
+            System.out.println("New cost: " + newCost);
+
+
             if(acceptNewSol(currentCost, newCost, temperature)){
                 currentSolution=newSolution;
                 currentCost=newCost;
+                System.out.println("New solution is accepted");
             }
+            else
+                System.out.println("New solution is rejected");
 
             temperature*=1-cooling;
         }
+        System.out.println("\nFinal solution: " + Arrays.toString(currentSolution));
+        System.out.println("Final cost: " + currentCost);
         return currentSolution;
     }
 
