@@ -60,6 +60,27 @@ public class SA {
         return total;
     }
 
-    //An evaluation criterion.
+    public int[] simulatedAnnealing(int[] initialSolution){
+
+        int[] currentSolution= initialSolution.clone();
+        int currentCost=cost(currentSolution);
+        int temperature=1000;
+        double cooling=0.003;
+
+        while(temperature>1){
+            //find neigbours
+            int[] newSolution=findNeighbours(currentSolution);
+            int newCost= cost(newSolution);
+            if(acceptNewSol(currentCost, newCost, temperature)){
+                currentSolution=newSolution;
+                currentCost=newCost;
+            }
+
+            temperature*=1-cooling;
+        }
+        return currentSolution;
+    }
+
+    
     
 }
