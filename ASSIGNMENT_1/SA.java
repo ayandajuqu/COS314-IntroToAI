@@ -57,7 +57,7 @@ public class SA {
         for(int i=0; i<5; i++){
             total+=disntanceCost[arr[i]][arr[i+1]];
         }
-        total+=total+=disntanceCost[arr[5]][arr[0]];
+        total+=disntanceCost[arr[5]][arr[0]];
         return total;
     }
 
@@ -65,15 +65,17 @@ public class SA {
 
         int[] currentSolution= initialSolution.clone();
         int currentCost=cost(currentSolution);
-        int temperature=1000;
+        double temperature=1000.000;
         double cooling=0.003;
 
+
+        //System.out.println("\n Initial Temperature: " + temperature);
         while(temperature>1){
             //find neigbours
             int[] newSolution=findNeighbours(currentSolution);
             int newCost= cost(newSolution);
             //testing
-             System.out.println("\nTemperature: " + temperature);
+            System.out.println("Temperature: " + temperature);
             System.out.println("New solution: " + Arrays.toString(newSolution));
             System.out.println("New cost: " + newCost);
 

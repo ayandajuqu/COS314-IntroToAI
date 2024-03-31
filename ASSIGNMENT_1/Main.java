@@ -9,23 +9,24 @@ public class Main {
             {30, 25, 22, 18, 0}
         };
 
-        // ILS algo=new ILS(distanceMatrix);
-        // int[] initialSolution=algo.initialSolution();
+        ILS algo=new ILS(distanceMatrix);
+        int[] initialSolution=algo.initialSolution();
 
-        // System.out.println("The Initial Solution: ");
+        System.out.println("The Initial Solution: ");
         
 
-        // algo.hillClimbAlgo(initialSolution);
+        algo.hillClimbAlgo(initialSolution);
 
-        SA algo =new SA(distanceMatrix);
-        int[] initialSolution=algo.initialSolution();
-        System.out.print("[");
-        for(int i=0; i<initialSolution.length-1; i++)
-        {
-            System.out.print(initialSolution[i]+ " ");
-        }
-        System.out.println(initialSolution[5]+"]");
-        algo.simulatedAnnealing(initialSolution);
+        // SA algo2 =new SA(distanceMatrix);
+        // int[] initialSolution=algo2.initialSolution();
+        // System.out.println("HELLOOO");
+        // System.out.print("[");
+        // for(int i=0; i<initialSolution.length-1; i++)
+        // {
+        //     System.out.print(initialSolution[i]+ " ");
+        // }
+        // System.out.println(initialSolution[5]+"]");
+        // algo2.simulatedAnnealing(initialSolution);
 
     }
 }

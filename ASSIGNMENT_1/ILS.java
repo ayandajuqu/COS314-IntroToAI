@@ -15,10 +15,12 @@ public class ILS
     public int[] initialSolution()
     {
         //create an populate arr
-        int[] randomArray= new int[5];
+        int[] randomArray= new int[6];
         for(int i=0; i<5; i++){
             randomArray[i]=i;
         }
+        randomArray[0]=0;
+        randomArray[5]=0;
 
         //randomise arr
         Random r=new Random();
@@ -37,11 +39,11 @@ public class ILS
     @SuppressWarnings("unused")
     public int[] hillClimbAlgo(int[] randomArray)
     {
-        int[] oldSolution=new int[5];
+        int[] oldSolution=new int[6];
         oldSolution=randomArray.clone();
         int initialDistance=totalDistance(oldSolution);
 
-        int[] newSolution=new int[5];
+        int[] newSolution=new int[6];
         newSolution=randomArray.clone();
         boolean optimum=false;
         int iterations=0;
@@ -88,10 +90,10 @@ public class ILS
     //fine
     private int totalDistance(int[] curr){
         int total=0;
-        for(int i=0; i<4;i++){
+        for(int i=0; i<5;i++){
             total+=distanceCost[curr[i]][curr[i+1]];
         }
-        total+=distanceCost[curr[4]][curr[0]];
+        total+=distanceCost[curr[5]][curr[0]];
         return total;
     }
 }
