@@ -81,6 +81,11 @@ public class SA {
         return currentSolution;
     }
 
-    
+    private boolean acceptNewSol(int currentCost, int newCost, double temp){
+        if(newCost< currentCost)
+            return true;// always a better solution
+        double prob=Math.exp((currentCost - newCost) / temp);
+        return Math.random()<prob;
+    }
     
 }
