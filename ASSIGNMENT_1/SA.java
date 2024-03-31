@@ -40,7 +40,7 @@ public class SA {
         int a=r.nextInt(4) +1;
         int b=r.nextInt(4) +1;
         swap(neighbours, a, b);
-        
+
         return neighbours;
     }
 
@@ -52,7 +52,12 @@ public class SA {
     //A cost function.
     public int cost(int[] arr)
     {
-        return -1;
+        int total=0;
+        for(int i=0; i<5; i++){
+            total+=disntanceCost[arr[i]][arr[i+1]];
+        }
+        total+=total+=disntanceCost[arr[5]][arr[0]];
+        return total;
     }
 
     //An evaluation criterion.
