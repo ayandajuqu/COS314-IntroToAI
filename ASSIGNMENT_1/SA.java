@@ -14,15 +14,15 @@ public class SA {
     public int[] initialSolution()
     {
         //create an populate arr
-        int[] currSolution= new int[5];
+        int[] currSolution= new int[6];
         for(int i=0; i<5; i++){
             currSolution[i]=i;
         }
-
+        currSolution[5]=0;//set Hatfield
         //randomise arr
         Random r=new Random();
         
-        for (int i=4; i>0; i--)
+        for (int i=4; i>1; i--)
         {
             int j=r.nextInt(i+1);
             int tmp=currSolution[i];
@@ -33,11 +33,22 @@ public class SA {
     }
 
     //A generation function to find neighbours 
-    public int[] findNeighbours(int index)
+    public int[] findNeighbours(int[] currSolution)
     {
-        return null;
+        int[] neighbours=currSolution.clone();
+        Random r=new Random();
+        int a=r.nextInt(4) +1;
+        int b=r.nextInt(4) +1;
+        swap(neighbours, a, b);
+        
+        return neighbours;
     }
 
+    private void swap(int[]arr, int a, int b){
+        int temp=arr[a];
+        arr[a]=arr[b];
+        arr[b]=temp;
+    }
     //A cost function.
     public int cost(int[] arr)
     {
