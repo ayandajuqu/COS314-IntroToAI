@@ -13,20 +13,21 @@ public class Main {
         int[] initialSolution=algo.initialSolution();
 
         System.out.println("The Initial Solution: ");
-        
+        System.out.println("HELLOOO");
+        System.out.print("[");
+        for(int i=0; i<initialSolution.length-1; i++)
+        {
+            System.out.print(initialSolution[i]+ " ");
+        }
+        System.out.println(initialSolution[5]+"]");
+    
 
         algo.hillClimbAlgo(initialSolution);
 
         // SA algo2 =new SA(distanceMatrix);
-        // int[] initialSolution=algo2.initialSolution();
-        // System.out.println("HELLOOO");
-        // System.out.print("[");
-        // for(int i=0; i<initialSolution.length-1; i++)
-        // {
-        //     System.out.print(initialSolution[i]+ " ");
-        // }
-        // System.out.println(initialSolution[5]+"]");
-        // algo2.simulatedAnnealing(initialSolution);
+        // int[] initialSolution2=algo2.initialSolution();
+        // algo2.simulatedAnnealing(initialSolution2);
 
+        // System.currentTimeMillis();
     }
 }

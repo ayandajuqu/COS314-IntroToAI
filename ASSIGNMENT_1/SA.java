@@ -1,5 +1,7 @@
 package ASSIGNMENT_1;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -62,7 +64,7 @@ public class SA {
     }
 
     public int[] simulatedAnnealing(int[] initialSolution){
-
+        int iterations=0;
         int[] currentSolution= initialSolution.clone();
         int currentCost=cost(currentSolution);
         double temperature=1000.000;
@@ -70,25 +72,35 @@ public class SA {
 
 
         //System.out.println("\n Initial Temperature: " + temperature);
-        while(temperature>1){
-            //find neigbours
-            int[] newSolution=findNeighbours(currentSolution);
-            int newCost= cost(newSolution);
-            //testing
-            System.out.println("Temperature: " + temperature);
-            System.out.println("New solution: " + Arrays.toString(newSolution));
-            System.out.println("New cost: " + newCost);
-
-
-            if(acceptNewSol(currentCost, newCost, temperature)){
-                currentSolution=newSolution;
-                currentCost=newCost;
-                System.out.println("New solution is accepted");
-            }
-            else
+        try (PrintWriter writer = new PrintWriter("SA_txt.txt", "UTF-8")){
+            // This part of the code is implementing the simulated annealing algorithm. Here's a
+            // breakdown of what's happening inside the `while` loop:
+            while(temperature>1){
+                //find neigbours
+                int[] newSolution=findNeighbours(currentSolution);
+                int newCost= cost(newSolution);
+                //testing
+                System.out.println("Temperature: " + temperature);
+                System.out.println("New solution: " + Arrays.toString(newSolution));
+                System.out.println("New cost: " + newCost);
+                
+                if(acceptNewSol(currentCost, newCost, temperature)){
+                    currentSolution=newSolution;
+                    currentCost=newCost;
+                    System.out.println("New solution is accepted");
+                }
+                else
                 System.out.println("New solution is rejected");
+                writer.println(iterations + "\t" + currentCost);
+                
+                temperature*=1-cooling;
+                iterations++;
+            }
 
-            temperature*=1-cooling;
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred while writing to the file.");
+            e.printStackTrace();
         }
         System.out.println("\nFinal solution: " + Arrays.toString(currentSolution));
         System.out.println("Final cost: " + currentCost);
