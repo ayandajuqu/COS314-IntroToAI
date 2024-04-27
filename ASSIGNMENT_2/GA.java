@@ -3,12 +3,10 @@ import java.util.Random;
 
 public class GA {
     private Random rand;
-    final int POPULATION_MULTIPLIER = 8;
     final int POPULATION_SIZE=100;
     final double CROSSOVER_RATE = 0.3;
     final double MUTATION_RATE = 0.4;
     final int MAX_GENERATIONS = 500;
-    final int STOPPING_ITERATIONS = 250;
     final double TOURNAMENT_SIZE = 5;
 
 public GA(){
@@ -35,7 +33,7 @@ public Chromosome selection(Chromosome[] population,int capacity, int[] weight, 
     rand= new Random();
     for(int i=0; i<TOURNAMENT_SIZE; i++){
         int index=rand.nextInt(population.length);
-        if(population[index].fitness> current.fitness){
+        if(current==null || population[index].fitness> current.fitness){
             //found =true;
             current=population[index];
         }
@@ -65,6 +63,31 @@ public void mutate(Chromosome individual){
         if(rand.nextDouble()< MUTATION_RATE)
             individual.genes[i]=1-individual.genes[i];
     }
+}
+
+///-------------------THIS IS THE HILLCLIMBING ALGORITHM--------------
+public void hillCLimb(Chromosome individual, int capacity, int[] values, int[] weights){
+    boolean improvement = true;
+    while (improvement) {
+        improvement = false;
+        for (int i = 0; i < individual.genes.length; i++) {
+            if (individual.genes[i] == 0) {
+                individual.genes[i] = 1;
+                individual.fitness = individual.calculateFitness(capacity, values, weights);
+                if (individual.fitness == 0) {
+                    // Adding the item exceeded the capacity, so remove it
+                    individual.genes[i] = 0;
+                } else {
+                    // Adding the item improved the solution
+                    improvement = true;
+                }
+            }
+        }
+    } 
+}
+
+public void setRandom(Random rand){
+    this.rand = rand;
 }
 // 7:   Evaluate fitness of all individuals
 // 8:   Generate a new population
