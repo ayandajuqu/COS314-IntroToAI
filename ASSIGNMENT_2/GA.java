@@ -4,8 +4,7 @@ import java.util.Random;
 public class GA {
     private Random rand;
     final int POPULATION_SIZE=100;
-    final double CROSSOVER_RATE = 0.3;
-    final double MUTATION_RATE = 0.4;
+    final double MUTATION_RATE = 0.1;
     final int MAX_GENERATIONS = 500;
     final double TOURNAMENT_SIZE = 5;
 
@@ -27,18 +26,18 @@ public Chromosome[] generateInitialPopulation(int numItems){
 // 4:   Select fitter individuals for reproduction
 
 //this uses tournament selecetion
-public Chromosome selection(Chromosome[] population,int capacity, int[] weight, int[ ]values){
+public Chromosome selection(Chromosome[] population,double capacity, double[] weight, double[ ]values){
     //boolean found=false;//this states if a better solution is found
     Chromosome current=null;
     rand= new Random();
     for(int i=0; i<TOURNAMENT_SIZE; i++){
-        int index=rand.nextInt(population.length);
+        int index=rand.nextInt(population.length); //
         if(current==null || population[index].fitness> current.fitness){
             //found =true;
             current=population[index];
         }
     }
-    return current;
+    return current; 
 }
 // 5:   Recombine individuals
 public Chromosome crossover(Chromosome mother, Chromosome father){
@@ -66,7 +65,7 @@ public void mutate(Chromosome individual){
 }
 
 ///-------------------THIS IS THE HILLCLIMBING ALGORITHM--------------
-public void hillCLimb(Chromosome individual, int capacity, int[] values, int[] weights){
+public void hillCLimb(Chromosome individual, double capacity, double[] values, double[] weights){
     boolean improvement = true;
     while (improvement) {
         improvement = false;

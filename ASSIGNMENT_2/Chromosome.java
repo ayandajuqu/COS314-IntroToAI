@@ -1,7 +1,7 @@
 import java.util.Random;
 public class Chromosome {
     int genes[];
-    int fitness;
+    double fitness;
     private Random rand;
 
     public Chromosome(int numGenes)
@@ -16,9 +16,9 @@ public class Chromosome {
     }
 
     //claculate fitness of chromosome
-    public int calculateFitness(int capacity, int[] value, int []weight){
-        int sumWeight=0;
-        int sumValues=0;
+    public double calculateFitness(double capacity, double[] value, double []weight){
+        double sumWeight=0;
+        double sumValues=0;
         for(int i=0; i<genes.length; i++){
             if(genes[i]==1){ //if item is present in knapsack
                 sumValues+=value[i];
